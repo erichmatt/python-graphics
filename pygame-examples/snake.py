@@ -87,7 +87,11 @@ def check_eat(snake, apple):
 
 if __name__ == '__main__':
     snake = Snake()
-    apple = Apple()
+    apple = []
+    for count in xrange(400):
+        x = Apple()
+        x.attr = count
+        apple.append(x)
     while True:
 
         for event in pygame.event.get():
@@ -107,9 +111,11 @@ if __name__ == '__main__':
 
         surface.fill((255,255,255))
         snake.move()
-        check_eat(snake, apple)
+        for i in range(len (apple)):
+            check_eat(snake, apple[i])
         snake.draw(surface)
-        apple.draw(surface)
+        for i in range(len (apple)):
+            apple[i].draw(surface)
         font = pygame.font.Font(None, 36)
         text = font.render(str(snake.length), 1, (10, 10, 10))
         textpos = text.get_rect()
